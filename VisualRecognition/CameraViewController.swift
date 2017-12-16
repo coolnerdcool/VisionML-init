@@ -38,6 +38,34 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func initCamera() {
     
+        self.captureSession = AVCaptureSession()
+        self.captureSession?.sessionPreset = AVCaptureSession.Preset.hd1920x1080
+        
+        let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
+        
+        do{
+            
+            let input = try AVCaptureDeviceInput(device: backCamera!)
+            self.captureSession?.addInput(input)
+            
+            self.photoOutput = AVCapturePhotoOutput()
+            if (self.captureSession?.canAddOutput(self.photoOutput!) != nil) {
+                
+                self.captureSession?.addOutput(self.photoOutput!)
+                self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+                self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+                self.previewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+                self.cameraView?.layer.addSublayer(self.previewLayer!)
+                
+                self.captureSession?.startRunning()
+                
+            }
+            
+        } catch {
+            print("ERROR: \(error)")
+        }
+        
+        self.previewLayer?.frame = self.view.bounds
         
     
     }
