@@ -17,6 +17,7 @@
 		2336252D1EFE03F70012AF39 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233625271EFE03780012AF39 /* ResultsTableViewController.swift */; };
 		2336252E1EFE03F70012AF39 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233625231EFE03780012AF39 /* ResultTableViewCell.swift */; };
 		233625481EFEE6260012AF39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 233625461EFEE5E80012AF39 /* Main.storyboard */; };
+		764BFA3E1FEA726500D04351 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 764BFA3D1FEA726500D04351 /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		233625281EFE03CD0012AF39 /* PulleyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulleyViewController.swift; sourceTree = "<group>"; };
 		233625291EFE03CD0012AF39 /* PulleyPassthroughScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulleyPassthroughScrollView.swift; sourceTree = "<group>"; };
 		233625471EFEE5E80012AF39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		764BFA3D1FEA726500D04351 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				233625271EFE03780012AF39 /* ResultsTableViewController.swift */,
 				233625231EFE03780012AF39 /* ResultTableViewCell.swift */,
 				233625201EFE008D0012AF39 /* CameraViewController.swift */,
+				764BFA3D1FEA726500D04351 /* Inceptionv3.mlmodel */,
 				233625461EFEE5E80012AF39 /* Main.storyboard */,
 				233182B21EFDC0A700757F8F /* Assets.xcassets */,
 				233182B41EFDC0A700757F8F /* LaunchScreen.storyboard */,
@@ -163,6 +166,7 @@
 				2336252C1EFE03F70012AF39 /* ProgressBar.swift in Sources */,
 				2336252D1EFE03F70012AF39 /* ResultsTableViewController.swift in Sources */,
 				2336252E1EFE03F70012AF39 /* ResultTableViewCell.swift in Sources */,
+				764BFA3E1FEA726500D04351 /* Inceptionv3.mlmodel in Sources */,
 				233625211EFE02250012AF39 /* CameraViewController.swift in Sources */,
 				233182AC1EFDC0A700757F8F /* AppDelegate.swift in Sources */,
 			);

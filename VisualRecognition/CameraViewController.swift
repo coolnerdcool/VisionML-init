@@ -73,7 +73,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         if let error = error{
-            print("\ERROR: \(error)")
+            print("ERROR:\(error)")
             return
         }
         
@@ -95,7 +95,24 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     func classify(_ image: CGImage, completion: @escaping ([VNClassificationObservation])-> Void) {
-        
+        DispatchQueue.global(qos: .background).async {
+            guard let coremodel = try? VNCoreMLModel(for: Inceptionv3().model) else {return}
+            let request = VNCoreMLRequest(model: coremodel, completionHandler:
+            { (request, error) in
+                guard let results = request.results as? [VNClassificationObservation] else {fatalError("Processing Error")}
+                
+                 results = results.filter({$0.confidence > 0.01})
+                DispatchQueue.main.async {
+                    completion(results)
+                }
+            })
+            let handler = VNImageRequestHandler(cgImage: image)
+            do{
+                try handler.perform([request])
+            } catch {
+                print("Error\(error)")
+            }
+        }
     }
     
     func dismissResults() {
