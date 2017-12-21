@@ -99,7 +99,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             guard let coremodel = try? VNCoreMLModel(for: Inceptionv3().model) else {return}
             let request = VNCoreMLRequest(model: coremodel, completionHandler:
             { (request, error) in
-                guard let results = request.results as? [VNClassificationObservation] else {fatalError("Processing Error")}
+                guard var results = request.results as? [VNClassificationObservation] else {fatalError("Processing Error")}
                 
                  results = results.filter({$0.confidence > 0.01})
                 DispatchQueue.main.async {
@@ -117,13 +117,35 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func dismissResults() {
         
+        getTableController { (tablecontroller, drawer) in
+            drawer.setDrawerPosition(position: .closed, animated: true)
+            tablecontroller.classifications = []
+            
+        }
+        
     }
     
     func push(data: [VNClassificationObservation]) {
+        getTableController{ (tablecontroller, drawer) in
+        
+            tablecontroller.classifications = data
+            self.dismiss(animated: true, completion: nil)
+            drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
+            
+            
+        }
+        
         
     }
     
     func getTableController(run: (_ tableController: ResultsTableViewController, _ drawer: PulleyViewController)-> Void){
+        
+        if let drawer = self.parent as? PulleyViewController {
+            if let tablecontroller = drawer.drawerContentViewController as? ResultsTableViewController {
+                run(tablecontroller, drawer)
+                tablecontroller.tableView.reloadData()
+            }
+        }
         
     }
     

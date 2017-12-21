@@ -3,6 +3,8 @@ import Vision
 
 class ResultsTableViewController: UITableViewController {
    
+    var classifications = [VNClassificationObservation]()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         return.lightContent
